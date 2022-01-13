@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"github.com/k0kubun/pp/v3"
+)
 
 func main() {
 	cards := newDeck()
-	fmt.Println(cards.toString())
+	pp.Println(cards)
 }
