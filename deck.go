@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 )
 
@@ -39,8 +40,12 @@ func deal(d deck, handSize int) (deck, deck) {
 	//fmt.Println(slice[2:]) // [c d e f g]
 }
 
-// deckを[]stringに型変換をして、要素をカンマ区切りで1つ文字列にする
+// deckを[]stringに型変換をして、要素をカンマ区切りで1つ文字列にする ["hoge", "piyo"] -> "hoge,piyo"
 func (d deck) toString() string {
 	// deckと[]stringは互換性がある。[]string(deck)でdeckから[]stringに型変換できる。
 	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
